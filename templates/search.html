@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Search Result{% endblock title %}
+
+{% block body %}
+{% load static %}
+
+<div class="container mt-4">
+    <form method="get" class="mb-4 m-2">
+        <div class="input-group">
+            {{ form.query }}
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-danger">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="container mt-3">
+  
+        <h3 class="bold border border-white p-2 mb-2 border-opacity-75  bg-dark text-white"><i class='bx bx-category'>Search Result</i></h3> 
+    </div>
+    {% if results %}
+        <ul class="list-group">
+            {% for item in results %}
+                {% comment %} <li class="list-group-item">{{ item }}</li> <!-- Adjust this according to your search result structure --> {% endcomment %}
+                
+                
+                <div class="container mb-3">
+                
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                      {% for moviescard in results %}
+                      <div class="col-6">
+                        <div class="card h-100">
+                         <a class="text-red" href="/moviesview/{{moviescard.id}}"> <img src="/media/{{moviescard.image}}"  class="card-img-top" alt="{{moviescard.name}}">
+                          <div class="card-body">
+                            <h5 class="card-title">{{moviescard.name|slice:65}}</h5>
+                            
+                          </div>
+                        </a>
+                          {% comment %} <div class="card-footer">
+                            <small class="text-body-secondary">{{moviescard.pub_date}}</small>
+                          </div> {% endcomment %}
+                        </div>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+            {% empty %}
+                <li class="list-group-item">No results found.</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+</div>
+{% endblock body %}

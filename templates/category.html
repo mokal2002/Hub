@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}{{category.cat_name}} {% endblock title %}
+
+{% block body %}
+{% load static %}
+
+<div class="container p-4">
+  <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Categories</button>
+  
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header bg-dark text-white">
+      
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Categories</h5>
+      
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body bg-dark text-white">
+      <ul>
+      {% for cat in categories %}
+      <li><a class="text-white" href="{% url 'category' cat.id %}">{{cat.cat_name}}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+  
+  </div>
+
+<div class="container mt-3 text-white">
+  
+    <h3 class="bold border border-white p-2 mb-2 border-opacity-75  bg-dark"><i class='bx bx-category'>{{category.cat_name}}</i></h3> 
+</div>
+
+<div class="container mb-3">
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      {% for moviescard in moviescards %}
+      <div class="col-6">
+        <div class="card h-100">
+         <a class="text-red" href="/moviesview/{{moviescard.id}}"> <img src="/media/{{moviescard.image}}"  class="card-img-top" alt="{{moviescard.name}}">
+          <div class="card-body">
+            <h5 class="card-title">{{moviescard.name|slice:65}}</h5>
+            
+          </div>
+        </a>
+          {% comment %} <div class="card-footer">
+            <small class="text-body-secondary">{{moviescard.pub_date}}</small>
+          </div> {% endcomment %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="pagination justify-content-center">
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1">&laquo; First</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+      {% endif %}
+      {% for num in page_obj.paginator.page_range %}
+        <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+  
+  <hr>
+  
+{% endblock body %}
+
