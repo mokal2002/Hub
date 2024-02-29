@@ -6,28 +6,28 @@
 
 <div class="container p-4">
   <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Categories</button>
-  
+
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header bg-dark text-white">
-      
+
       <h5 class="offcanvas-title" id="offcanvasRightLabel">Categories</h5>
-      
+
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body bg-dark text-white">
       <ul>
       {% for cat in categories %}
-      <li><a class="text-white" href="{% url 'category' cat.id %}">{{cat.cat_name}}</a></li>
+      <li><a class="text-white" href="{% url 'category' cat.c_slug %}">{{cat.cat_name}}</a></li>
       {% endfor %}
       </ul>
     </div>
   </div>
-  
+
   </div>
 
 <div class="container mt-3 text-white">
-  
-    <h3 class="bold border border-white p-2 mb-2 border-opacity-75  bg-dark"><i class='bx bx-category'>{{category.cat_name}}</i></h3> 
+
+    <h3 class="bold border border-white p-2 mb-2 border-opacity-75  bg-dark"><i class='bx bx-category'>{{category.cat_name}}</i></h3>
 </div>
 
 <div class="container mb-3">
@@ -36,10 +36,10 @@
       {% for moviescard in moviescards %}
       <div class="col-6">
         <div class="card h-100">
-         <a class="text-red" href="/moviesview/{{moviescard.id}}"> <img src="/media/{{moviescard.image}}"  class="card-img-top" alt="{{moviescard.name}}">
+         <a class="text-red" href="/moviesview/{{moviescard.m_slug}}"> <img src="/media/{{moviescard.image}}"  class="card-img-top" alt="{{moviescard.name}}">
           <div class="card-body">
             <h5 class="card-title">{{moviescard.name|slice:65}}</h5>
-            
+
           </div>
         </a>
           {% comment %} <div class="card-footer">
@@ -75,8 +75,8 @@
       {% endif %}
     </ul>
   </div>
-  
+
   <hr>
-  
+
 {% endblock body %}
 

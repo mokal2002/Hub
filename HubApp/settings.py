@@ -17,6 +17,7 @@ from django.contrib.messages import constants as messages
 from pathlib import Path
 import mimetypes
 
+
 mimetypes.add_type("text/css",".css",True)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,15 +40,25 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'MoviesHub',
     'jazzmin',
+    'autoslug',
+
+    # 'admin_soft.apps.AdminSoftDashboardConfig',
+    # 'debug_toolbar', # new added
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
+SITE_ID = 1
+
 MIDDLEWARE = [
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -62,7 +73,7 @@ ROOT_URLCONF = 'HubApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,6 +86,7 @@ TEMPLATES = [
     },
 ]
 
+# WSGI_APPLICATION = 'HubApp.wsgi.application'
 WSGI_APPLICATION = 'HubApp.wsgi.application'
 
 
@@ -122,25 +134,28 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-STATIC_URL = 'static/'
-STATICFILES_DIRS =[
-    os.path.join(BASE_DIR,'static')
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+STATIC_URL = 'static/'
+
+# STATICFILES_DIRS =[
+#     os.path.join(BASE_DIR,'static')
+# ]
 
 
-MESSAGE_TAGS = {
-    messages.ERROR: 'danger'
-    
+
+MESSAGE_TAGS ={
+    messages.ERROR:'danger'
 }
 
-
+STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # MoviesHub
 # movieshub

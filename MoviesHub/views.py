@@ -1,14 +1,14 @@
-from django.shortcuts import get_object_or_404, render, HttpResponse
-from MoviesHub.models import *
+from django.shortcuts import get_object_or_404, render
+from MoviesHub.models import MovieCard , Category , Request
 from django.contrib import messages
-import logging
+# import logging
 from django.core.paginator import Paginator
-
+# from .models import *
 from .forms import SearchForm
 # Create your views here.
 def Home(request):
     movies = MovieCard.objects.order_by('-pub_date')
-    paginator = Paginator(movies, 12) 
+    paginator = Paginator(movies, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -17,29 +17,26 @@ def Home(request):
     context = {
         'movies' : page_obj,
         'categories': categories,
-        'page_obj': page_obj       
+        'page_obj': page_obj
     }
     return render(request, "home.html" ,context)
 
-def moviesView(request, myid):
-    moviesview = MovieCard.objects.filter(id=myid)
+def moviesView(request, slug):
+    moviesview = MovieCard.objects.get(m_slug=slug)
     categories = Category.objects.order_by('cat_name')
-    return render(request, "movieView.html", {'moviesview':moviesview[0], 'categories': categories})
+    return render(request, "movieView.html", {'moviesview':moviesview, 'categories': categories})
 
-
-def category(request, category_id):
-    category = get_object_or_404(Category, pk = category_id)
+def category(request, slug):
+    category = get_object_or_404(Category, c_slug=slug)
     categories = Category.objects.order_by('cat_name')
-    
-    
     moviescards = category.moviecard_set.order_by('-pub_date')
-    paginator = Paginator(moviescards, 12) 
+    paginator = Paginator(moviescards, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
-    
-    
- 
+
+
+
+
     context = {
 		'category' : category,
 		'moviescards' : page_obj,
@@ -76,7 +73,7 @@ def MovieRequest(request):
 #         MovieDesc = MovieCard.objects.filter(desc__icontains=query)
 #         # productsCat = Product.objects.filter(category__icontains=query)
 #         Movies =  MovieName.union(MovieDesc)
-       
+
 
 
 #     # if products.count() == 0:
@@ -84,7 +81,7 @@ def MovieRequest(request):
 #     context = {
 #         'Movies': Movies,
 #         'query' : query
-#     }    
+#     }
 #     return render(request, 'search.html', context)
 
 

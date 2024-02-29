@@ -3,12 +3,32 @@
 
 <head>
     {% load static %}
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>MoviesHub | {% block title %}{% endblock title %}</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+
+<meta name="google-site-verification" content="MzWB_QrSpb8o5GwyZMf7Z-iZ2bURKa6BejtT7PzuEew" />
+
+
+
+  <meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<title>MovieHub | Free Movies and Web Series Download | Watch Online</title>
+<meta name="description" content="Download free Bollywood, Hollywood, and South Indian movies, as well as web series, in Hindi and English (Dual Audio) in 4K, 1080p, 720p, and HEVC formats. Stream or download for free.">
+<meta name="keywords" content="free movies, free series, download movies free, Bollywood movies, Hollywood movies, South Indian movies, web series, watch online, stream movies, movie download">
+<link rel="canonical" href="https://www.moviehub.pythonanywhere.com">
+<!-- Open Graph tags -->
+<meta property="og:title" content="MovieHub | Free Movies and Web Series Download | Watch Online">
+<meta property="og:description" content="Download free Bollywood, Hollywood, and South Indian movies, as well as web series, in Hindi and English (Dual Audio) in 4K, 1080p, 720p, and HEVC formats. Stream or download for free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.moviehub.pythonanywhere.com/">
+<meta property="og:image" content="https://www.moviehub.pythonanywhere.com/your-image.jpg">
+<meta property="og:image:alt" content="MovieHub">
+<!-- Twitter Card tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MovieHub | Free Movies and Web Series Download | Watch Online">
+<meta name="twitter:description" content="Download free Bollywood, Hollywood, and South Indian movies, as well as web series, in Hindi and English (Dual Audio) in 4K, 1080p, 720p, and HEVC formats. Stream or download for free.">
+<meta name="twitter:image" content="https://www.moviehub.pythonanywhere.com/your-image.jpg">
+
 
   <!-- Boxicons CSS -->
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' type="text/css" rel='stylesheet'>
@@ -32,6 +52,17 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/main.css' %}" type="text/css" rel="stylesheet">
   <style> {% block css %}{% endblock css %}</style>
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TM81SVDPJS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TM81SVDPJS');
+</script>
 </head>
 
   <!-- ======= Header ======= -->
@@ -72,7 +103,7 @@
           <li><a href="{% url "MovieRequest" %}">Movie Request Page</a></li>
         </ul>
       </nav><!-- .navbar -->
-     
+
       <a class="btn-book-a-table" href="/search/"><i class='bx bx-search'></i></a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
@@ -85,15 +116,15 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endfor %}
-    
+
   {% comment %} <div class="container p-4">
     <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Categories</button>
-    
+
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header">
-        
+
         <h5 class="offcanvas-title" id="offcanvasRightLabel">Categories</h5>
-        
+
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
@@ -107,7 +138,7 @@
     <hr>
     </div> {% endcomment %}
 
-    
+
 {% comment %}  row {% endcomment %}
 {% comment %} <div class="container mt-4">
   <div class="row row-cols-1 row-cols-md-12 bg-white g-1">
@@ -120,7 +151,7 @@
       </div>
     </div>
     {% endfor %}
-    
+
   </div>
 </div>
 <hr> {% endcomment %}
@@ -134,7 +165,7 @@
    <!-- ======= Footer ======= -->
    <footer id="footer" class="footer">
 
-    
+
 
     <div class="container">
       <div class="copyright">
